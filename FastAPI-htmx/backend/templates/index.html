@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ AI Chat Assistant - FastAPI + HTMX + AWS Bedrock</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="header-content">
+                <div class="avatar ai-avatar">🤖</div>
+                <div class="header-text">
+                    <h1>✨ AI Chat Assistant</h1>
+                    <p>Powered by FastAPI + HTMX + AWS Bedrock</p>
+                </div>
+                <div class="status-indicator" id="status">
+                    <div class="status-dot"></div>
+                    <span>Connected</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chat-messages">
+            <div class="message ai-message">
+                <div class="avatar ai-avatar">🤖</div>
+                <div class="message-content">
+                    <div class="message-bubble">
+                        <p>Hello! I'm your AI assistant powered by AWS Bedrock. How can I help you today?</p>
+                    </div>
+                    <div class="message-time">Just now</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <form hx-post="/api/v1/chat" 
+                  hx-target="#chat-messages" 
+                  hx-swap="beforeend"
+                  hx-indicator="#loading"
+                  class="chat-form">
+                <div class="input-group">
+                    <input type="text" 
+                           name="message" 
+                           placeholder="Type your message here..." 
+                           class="chat-input"
+                           required
+                           autocomplete="off">
+                    <button type="submit" class="send-button">
+                        <span class="send-icon">🚀</span>
+                        <span class="send-text">Send</span>
+                    </button>
+                </div>
+            </form>
+            
+            <div id="loading" class="loading-indicator htmx-indicator">
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+                <span>AI is thinking...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
